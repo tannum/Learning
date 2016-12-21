@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Learning</string>
+    <string name="dialog_closed">Dialog Closed</string>
     <string name="android_is_great">Android is Great!</string>
     <string name="do_not_press">Hey!\nDon\'t press this bugon</string>
     <string name="ok">OK</string>
