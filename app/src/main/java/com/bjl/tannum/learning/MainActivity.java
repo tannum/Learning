@@ -1,8 +1,10 @@
 package com.bjl.tannum.learning;
 
 import android.app.Dialog;
+import android.support.v4.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,10 +14,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener , MyAlertDialog.OnDialogDismissListener {
+
+public class MainActivity extends FragmentActivity {
 
 
-    Button buttonAlert = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,26 +25,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+        Button btn_one = (Button)findViewById(R.id.btn_one);
+        btn_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OneFragment fragment = new OneFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container,fragment);
+                transaction.commit();
+            }
+        });
 
-        buttonAlert = (Button)findViewById(R.id.button_alert);
-        buttonAlert.setOnClickListener(this);
+        Button btn_two = (Button)findViewById(R.id.btn_two);
+        btn_two.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                TwoFragment twoFragment = new TwoFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container, twoFragment);
+                transaction.commit();
+            }
+        });
 
+        Button btn_three = (Button)findViewById(R.id.btn_three);
+        btn_three.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ThreeFragment threeFragment = new ThreeFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container, threeFragment);
+                transaction.commit();
+            }
+        });
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_alert:
-                MyAlertDialog.show(this, R.string.android_is_great, this);
-                break;
-        }
-    }
-
-    @Override
-    public void onDismiss() {
-        Toast.makeText(this, R.string.dialog_closed, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
