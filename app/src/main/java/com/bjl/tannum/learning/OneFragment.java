@@ -3,10 +3,12 @@ package com.bjl.tannum.learning;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -14,10 +16,19 @@ import android.widget.Button;
  */
 public class OneFragment extends Fragment {
 
+    //String str;
+    private static final String KEY_STRING = "key_string";
+    TextView textView1;
 
     public OneFragment() {
         // Required empty public constructor
     }
+
+    public static OneFragment newInstance() {
+        OneFragment fragment = new OneFragment();
+        return fragment;
+    }
+
 
 
     @Override
@@ -25,19 +36,26 @@ public class OneFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        Log.d("debug", "OnCreateView");
+
         View rootView = inflater.inflate(R.layout.fragment_one,container,false);
-
-        Button btn_close = (Button)rootView.findViewById(R.id.btn_close);
-        btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().remove(OneFragment.this).commit();
-            }
-        });
-
-
+        textView1 = (TextView)rootView.findViewById(R.id.textView1);
 
         return rootView;
     }
+    public String getMyText() {
+        return textView1.getText().toString();
+    }
+    @Override
+    public void onDestroy() {
 
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("debug", "OnDestroyView");
+    }
 }

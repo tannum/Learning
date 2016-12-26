@@ -19,22 +19,16 @@ public class TwoFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static TwoFragment newInstance() {
+        TwoFragment fragment = new TwoFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_two,container,false);
-
-        Button btn_close = (Button)rootView.findViewById(R.id.btn_close);
-        btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().beginTransaction().remove(TwoFragment.this).commit();
-            }
-        });
-
-
 
         return rootView;
     }
